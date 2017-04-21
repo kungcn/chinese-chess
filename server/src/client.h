@@ -31,12 +31,13 @@ class Client {
  	int idx();
  	std::string name();
  	void transfer(json& recv_json);
+ 	void set_chess(Chess* chess);
  private:
 	int _fd;
 	int _idx;
 	std::string _name;
 	Chess* _chess;
-	int _opp_fd;
+	int _opp_fd; // used fd instead of ptr, because ptr may be deleted.
 	ClientState _state;
 	Server* _server;
 	struct sockaddr_in _addr;

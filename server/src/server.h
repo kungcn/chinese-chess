@@ -19,6 +19,7 @@ class Server {
 	Server(int port);
 	Status start();
  	json client_list(Client* client_ptr);
+ 	Client* find_client_ptr_by_fd(int fd);
  private:
  	void listen_port();
  	int cal_client_max_fd();

@@ -150,3 +150,12 @@ json Server::client_list(Client* client_ptr) {
     }
     return result;
 }
+
+Client* Server::find_client_ptr_by_fd(int fd) {
+    for (int i = 0; i < _max_client_size; i++) {
+        if (_client[i] && _client[i]->fd() == fd) {
+            return _client[i];
+        }
+    }
+    return NULL;
+}
