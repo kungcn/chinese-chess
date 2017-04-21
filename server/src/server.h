@@ -21,8 +21,11 @@ class Server {
  private:
  	void listen_port();
  	int cal_client_max_fd();
+ 	void accept_client();
+ 	void process_client(Client* client_ptr);
  	int _port;
  	int _fd;
+ 	fd_set _fdsr; // used for select
  	static const int _max_client_size = 50;
  	Client* _client[_max_client_size]; // accepted connection fd 
  	int _cur_client_num; // current connection amount

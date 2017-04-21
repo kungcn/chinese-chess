@@ -1,4 +1,6 @@
 #include "server.h"
+#include "json.hpp"
+using json = nlohmann::json;
 
 Server::Server(int port)  {
     _port = port;
@@ -8,25 +10,22 @@ Server::Server(int port)  {
 Status Server::start() {
     listen_port();
     if (!_status.ok()) return _status;
-
-    struct sockaddr_in client_addr;
-    fd_set fdsr;
+    
     int max_fd;
-    socklen_t sin_size;
 
     while (true) {
-        FD_ZERO(&fdsr);  
-        FD_SET(_fd, &fdsr);  
+        FD_ZERO(&_fdsr);  
+        FD_SET(_fd, &_fdsr);  
 
         for (int i = 0; i < _max_client_size; i++)
             if (_client[i])
-                FD_SET(_client[i]->fd(), &fdsr);
+                FD_SET(_client[i]->fd(), &_fdsr);
 
         max_fd = _fd;
         int client_max_fd = cal_client_max_fd();
         if (client_max_fd > max_fd) max_fd = client_max_fd;
 
-        if(-1 == select(max_fd+1, &fdsr, NULL, NULL, NULL)) {  
+        if(-1 == select(max_fd+1, &_fdsr, NULL, NULL, NULL)) {  
             _status.set_ok(false);
             _status.set_msg("select error");
             return _status;  
@@ -34,53 +33,17 @@ Status Server::start() {
             printf("select ok\n");
         }
 
-        for (int i = 0; i < _max_client_size; i++) {
-            if (_client[i] && FD_ISSET(_client[i]->fd(), &fdsr)) {  
-                int ret = recv(_client[i]->fd(), _buf, sizeof(_buf), 0);  
-                char str[] = "Good,very nice!\n";  
-                  
-                send(_client[i]->fd(),str,sizeof(str) + 1, 0);  
-                  
-                if (ret <= 0) {        // client close  
-                    printf("client[%d] close\n", i);  
-                    close(_client[i]->fd());  
-                    FD_CLR(_client[i]->fd(), &fdsr);
-                    delete _client[i];
-                    _client[i] = NULL;
-                } else {        // receive data  
-                    if (ret < _buf_size)  
-                        memset(&_buf[ret], '\0', 1);  
-                    printf("client[%d] send:%s\n", i, _buf);  
-                }  
-            }  
+        // receive data or client close 
+        for (int i = 0; i < _max_client_size; i++)
+            if (_client[i] && FD_ISSET(_client[i]->fd(), &_fdsr))
+                process_client(_client[i]);
+             
+
+        // new client connect
+        if (FD_ISSET(_fd, &_fdsr)) {
+            accept_client();
+            if (!_status.ok()) return _status;
         }
-
-        if (FD_ISSET(_fd, &fdsr)) {
-
-            int new_fd = accept(_fd, (struct sockaddr *)&client_addr, &sin_size);  
-            if (new_fd <= 0) {
-                _status.set_ok(false);
-                _status.set_msg("accept error");
-                return _status;
-            } else {
-                printf("accept client ok\n");
-            }
-
-            int have_find = false;
-            for (int i = 0; i < _max_client_size; i++) {
-                if (_client[i] == NULL) {
-                    have_find = true;
-                    _client[i] = new Client(client_addr, new_fd);// todo
-                    printf("store in %d\n", i);
-                    break;
-                }
-            }
-            if (!have_find) {
-                _status.set_ok(false);
-                _status.set_msg("exceed max client number");
-                return _status;
-            }
-        }  
     } // end while
     return _status;
 }
@@ -129,4 +92,50 @@ int Server::cal_client_max_fd() {
         }
     }
     return result;
+}
+
+void Server::accept_client() {
+    struct sockaddr_in client_addr;
+    socklen_t sin_size;
+    int new_fd = accept(_fd, (struct sockaddr *)&client_addr, &sin_size);  
+    if (new_fd <= 0) {
+        _status.set_ok(false);
+        _status.set_msg("accept error");
+        return;
+    } else {
+        printf("accept client ok\n");
+    }
+
+    int have_find = false;
+    for (int i = 0; i < _max_client_size; i++) {
+        if (_client[i] == NULL) {
+            have_find = true;
+            _client[i] = new Client(client_addr, new_fd);// todo
+            printf("store in %d\n", i);
+            break;
+        }
+    }
+    if (!have_find) {
+        _status.set_ok(false);
+        _status.set_msg("exceed max client number");
+        return;
+    }
+}
+
+void Server::process_client(Client* client_ptr) {
+    int nread = recv(client_ptr->fd(), _buf, sizeof(_buf), 0);  
+    char str[] = "Good,very nice!\n";
+      
+    send(client_ptr->fd(),str,sizeof(str)+1, 0);  
+      
+    if (nread <= 0) {        // client close  
+        printf("client[%d] close\n", client_ptr->idx());  
+        close(client_ptr->fd());  
+        FD_CLR(client_ptr->fd(), &_fdsr);
+        _client[client_ptr->idx()] = NULL;
+        delete client_ptr;
+    } else {        // receive data  
+        json data = json::parse(_buf, _buf+nread);
+        printf("client[%d] send:%s\n", client_ptr->idx(), data.dump(4).c_str());  
+    }
 }

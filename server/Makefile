@@ -18,7 +18,7 @@ server.o: src/status.h src/server.h src/server.cpp client.o
 main.o: server.o
 
 simple-client: 
-	g++ src/simple-client.cpp -o bin/simple-client
+	$(CXX) src/simple-client.cpp -o bin/simple-client $(CPPFLAGS)
 
 clean:
 	-rm -f $(OBJS)
