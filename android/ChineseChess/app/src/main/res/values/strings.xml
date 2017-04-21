@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">中国象棋</string>
+    <string name="enterName">输入昵称</string>
+    <string name="enterGame">进入游戏</string>
+    <string name="opponentName">对手：</string>
+    <string name="timeLeft">剩余时间</string>
+    <string name="surrender">投降</string>
+    <string name="praise">称赞</string>
+    <string name="threaten">威胁</string>
+</resources>

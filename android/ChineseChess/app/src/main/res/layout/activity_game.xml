@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.ceres.hao.chinesechess.GameActivity">
+
+    <LinearLayout
+        style="@style/LayoutStyle">
+        <TextView
+            style="@style/TextStyle"
+            android:text="@string/opponentName"/>
+        <TextView
+            android:id="@+id/opponentName"
+            style="@style/TextStyle"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LayoutStyle">
+        <TextView
+            android:id="@+id/status"
+            style="@style/TextStyle"
+            android:text=""/>
+        <TextView
+            style="@style/TextStyle"
+            android:text="@string/timeLeft"/>
+        <TextView
+            android:id="@+id/timeLeft"
+            style="@style/TextStyle"
+            android:text=""/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/surrender"
+        style="@style/ButtonStyle"
+        android:text="@string/surrender"/>
+
+
+</LinearLayout>
