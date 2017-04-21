@@ -1,5 +1,6 @@
 SRCS  = src/main.cpp
 SRCS += src/server.cpp
+SRCS += src/client.cpp
 
 OBJS=$(SRCS:.cpp=.o)
 
@@ -10,11 +11,13 @@ CPPFLAGS =-w -Wall -std=c++11 -fpermissive
 all: $(OBJS)
 	$(CXX) -o bin/main $(OBJS)  -lm
 
-server.o: src/status.h src/server.h src/server.cpp
+client.o: src/client.h src/client.cpp
+
+server.o: src/status.h src/server.h src/server.cpp client.o
 
 main.o: server.o
 
-client: 
+simple-client: 
 	g++ src/simple-client.cpp -o bin/simple-client
 
 clean:

@@ -24,9 +24,9 @@ int main(int argc, char *argv[])
     int nread = read(fd, buf, sizeof(buf));  
     if(nread == 0) {  
         printf("%s\n","server closed!");  
-        close(fd);  
     } else {
         printf("%s\n", buf);
-    }  
+    }
+    close(fd);  
     return 0;  
 }  
