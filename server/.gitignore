@@ -1,0 +1,5 @@
+bin/main
+bin/simple-client
+src/*.o
+
+src/simple-server.cpp
