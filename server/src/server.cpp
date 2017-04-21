@@ -55,7 +55,7 @@ void Server::listen_port() {
     if (_fd == -1) {
         _status.set_ok(false);
         _status.set_msg("create socket error");
-        return _status;
+        return;
     } else {
         printf("create socket ok\n");
     }
@@ -69,7 +69,7 @@ void Server::listen_port() {
     if(result == -1) {  
         _status.set_ok(false);
         _status.set_msg("bind error");   
-        return _status;
+        return;
     } else {
         printf("bind ok\n");
     }
@@ -78,7 +78,7 @@ void Server::listen_port() {
     if (result == -1) {
         _status.set_ok(false);
         _status.set_msg("listen error");     
-        return _status;
+        return;
     } else {
         printf("listen ok\n");
     }
@@ -110,7 +110,7 @@ void Server::accept_client() {
     for (int i = 0; i < _max_client_size; i++) {
         if (_client[i] == NULL) {
             have_find = true;
-            _client[i] = new Client(client_addr, new_fd);// todo
+            _client[i] = new Client(client_addr, new_fd, this);// todo
             printf("store in %d\n", i);
             break;
         }
@@ -124,9 +124,6 @@ void Server::accept_client() {
 
 void Server::process_client(Client* client_ptr) {
     int nread = recv(client_ptr->fd(), _buf, sizeof(_buf), 0);  
-    char str[] = "Good,very nice!\n";
-      
-    send(client_ptr->fd(),str,sizeof(str)+1, 0);  
       
     if (nread <= 0) {        // client close  
         printf("client[%d] close\n", client_ptr->idx());  
@@ -135,7 +132,21 @@ void Server::process_client(Client* client_ptr) {
         _client[client_ptr->idx()] = NULL;
         delete client_ptr;
     } else {        // receive data  
-        json data = json::parse(_buf, _buf+nread);
-        printf("client[%d] send:%s\n", client_ptr->idx(), data.dump(4).c_str());  
+        json recv_json = json::parse(_buf, _buf+nread);
+        printf("client[%d] send:%s\n", client_ptr->idx(), recv_json.dump(4).c_str());  
+        client_ptr->transfer(recv_json);
     }
+}
+
+json Server::client_list(Client* client_ptr) {
+    json result;
+    int cnt = 0;
+    result["self"] = {{"fd", client_ptr->fd()}, {"name", client_ptr->name()}};
+    for (int i = 0; i < _max_client_size; i++) {
+        if (_client[i]) {
+            json tmp = {{"fd", _client[i]->fd()}, {"name", _client[i]->name()}};
+            result["list"].push_back(tmp);
+        }
+    }
+    return result;
 }

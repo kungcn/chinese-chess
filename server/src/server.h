@@ -9,15 +9,16 @@
 #include <string.h>  
 #include <stdlib.h>  
 #include <errno.h>  
+#include <set>
 #include "status.h"
 #include "client.h"
+#include "chess.h"
 
 class Server {
  public:
 	Server(int port);
-
 	Status start();
-
+ 	json client_list(Client* client_ptr);
  private:
  	void listen_port();
  	int cal_client_max_fd();
@@ -31,6 +32,7 @@ class Server {
  	int _cur_client_num; // current connection amount
  	static const int _buf_size = 1024;
  	char _buf[_buf_size];
+ 	std::set<Chess*> _chess_set;
  	Status _status;
 };
 

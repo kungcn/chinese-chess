@@ -4,16 +4,18 @@ SRCS += src/client.cpp
 
 OBJS=$(SRCS:.cpp=.o)
 
-CXX?=g++
+CXX=clang++
 CPPFLAGS =-w -Wall -std=c++11 -fpermissive
 # CPPFLAGS +=-D DEBUG
 
 all: $(OBJS)
 	$(CXX) -o bin/main $(OBJS)  -lm
 
+chess.o: src/chess.h src/chess.cpp
+
 client.o: src/client.h src/client.cpp
 
-server.o: src/status.h src/server.h src/server.cpp client.o
+server.o: src/status.h src/server.h src/server.cpp client.o chess.o
 
 main.o: server.o
 
