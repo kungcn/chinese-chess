@@ -1,6 +1,7 @@
 SRCS  = src/main.cpp
 SRCS += src/server.cpp
 SRCS += src/client.cpp
+SRCS += src/chess.cpp
 
 OBJS=$(SRCS:.cpp=.o)
 
@@ -13,7 +14,7 @@ all: $(OBJS)
 
 chess.o: src/chess.h src/chess.cpp
 
-client.o: src/client.h src/client.cpp
+client.o: src/client.h src/client.cpp 
 
 server.o: src/status.h src/server.h src/server.cpp client.o chess.o
 

@@ -27,6 +27,7 @@ enum ClientState {
 class Client {
  public:
  	Client(struct sockaddr_in addr, int fd, Server* server);
+ 	~Client();
  	int fd();
  	int idx();
  	std::string name();
