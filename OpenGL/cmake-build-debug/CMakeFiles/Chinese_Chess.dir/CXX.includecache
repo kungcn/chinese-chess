@@ -1,0 +1,178 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Callback.cpp
+Callback.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Callback.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Callback.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Camera.cpp
+Camera.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Camera.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Camera.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Chess.cpp
+Chess.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Chess.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Chess.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+auxiliary.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/auxiliary.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/ChessBoard.cpp
+ChessBoard.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/ChessBoard.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/ChessBoard.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+Chess.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Chess.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.cpp
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Camera.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Camera.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+iostream
+-
+string
+-
+fstream
+-
+sstream
+-
+vector
+-
+GL/glew.h
+-
+GLFW/glfw3.h
+-
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+glm/gtc/type_ptr.hpp
+-
+SOIL.h
+-
+assimp/Importer.hpp
+-
+assimp/scene.h
+-
+assimp/postprocess.h
+-
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Light.cpp
+Light.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Light.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Light.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Mesh.cpp
+Mesh.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Mesh.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Mesh.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Model.cpp
+Model.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Model.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Model.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+Mesh.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Mesh.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Object.cpp
+Object.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Object.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Object.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.cpp
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/auxiliary.cpp
+auxiliary.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/auxiliary.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/auxiliary.h
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Defination.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Defination.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+Model.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Model.h
+Light.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Light.h
+
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/main.cpp
+Header.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Header.h
+Callback.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Callback.h
+Shader.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Shader.h
+auxiliary.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/auxiliary.h
+Model.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/Model.h
+ChessBoard.h
+/home/hao/Documents/Code/C/CLionProjects/Chinese Chess/ChessBoard.h
+
