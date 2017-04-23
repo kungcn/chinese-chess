@@ -1,14 +1,11 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <sys/socket.h>  
-#include <unistd.h>  
-#include <netinet/in.h>  
 #include <stdio.h>  
 #include <string.h>  
 #include <stdlib.h>
-#include <errno.h> 
 #include <string>
+#include "util.h"
 #include "json.hpp"
 using json = nlohmann::json;
 
@@ -36,6 +33,12 @@ class Client {
  	void set_chess(Chess* chess);
  	bool playing();
  private:
+ 	void transfer_from_create(json& recv_json);
+ 	void transfer_from_invite(json& recv_json);
+ 	void transfer_from_be_invited(json& recv_json);
+ 	void transfer_from_wait_invate_reply(json& recv_json);
+ 	void transfer_from_our_turn(json& recv_json);
+ 	void transfer_from_opp_turn(json& recv_json);
 	int _fd;
 	int _idx;
 	std::string _name;
