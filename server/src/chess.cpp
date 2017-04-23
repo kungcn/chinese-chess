@@ -5,6 +5,7 @@
 Chess::Chess(Client* p1, Client* p2)  {
 	_p1 = p1;
 	_p2 = p2;
+	_whose_turn = p1;
 	_ref = 2;
 	_over = false;
 	_winner = NULL;
@@ -30,14 +31,16 @@ void Chess::init_m() {
 
 bool Chess::move(Client* p, int before_x, int before_y, int after_x, int after_y) {
 	bool ok = false;
+	if (p != _whose_turn)
+		return false;
 	if (!check_inside(before_x, before_y) || !check_inside(after_x, after_y))
 		return false;
 	if (before_x == after_x && before_y && after_y)
 		return false;
-
 	PIECE_TYPE t = m[before_x][before_y];
 	if (p == _p1) {
-		if (type(m[after_x][after_y]) == TYPE_1) return false;
+		m[after_x][after_y];
+		if (upper_type(m[after_x][after_y]) == TYPE_1) return false;
 		switch (t) {
 			case SHUAI_1:
 				ok = shuai1_move(before_x, before_y, after_x, after_y);
@@ -62,7 +65,7 @@ bool Chess::move(Client* p, int before_x, int before_y, int after_x, int after_y
 				break;
 		}
 	} else {
-		if (type(m[after_x][after_y]) == TYPE_2) return false;
+		if (upper_type(m[after_x][after_y]) == TYPE_2) return false;
 		switch (t) {
 			case SHUAI_2:
 				ok = shuai2_move(before_x, before_y, after_x, after_y);
@@ -90,13 +93,31 @@ bool Chess::move(Client* p, int before_x, int before_y, int after_x, int after_y
 	if (ok) {
 		m[after_x][after_y] = m[before_x][before_y];
 		m[before_x][before_y] = NONE;
+		_whose_turn = p == _p1 ? _p2 : _p1;
 		check_game_over();
 	}
 	return ok;
 }
 
 void Chess::check_game_over() {
-
+	bool find_shuai_1 = false;
+	bool find_shuai_2 = false;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			if (m[i][j] == SHUAI_1)
+				find_shuai_1 = true;
+			if (m[i][j] == SHUAI_2)
+				find_shuai_2 = true;
+		}
+	}
+	if (find_shuai_1 && !find_shuai_2) {
+		_winner = _p1;
+		_over = true;
+	}
+	if (!find_shuai_1 && find_shuai_2) {
+		_winner = _p2;
+		_over = true;
+	}	
 }
 
 Client* Chess::winner() {
@@ -107,7 +128,8 @@ bool Chess::game_over() {
 	return _over;
 }
 
-PIECE_TYPE Chess::type(PIECE_TYPE t) {
+PIECE_TYPE Chess::upper_type(PIECE_TYPE t) {
+	PIECE_TYPE result;
 	switch (t) {
 		case SHUAI_1:
 		case SHI_1:
@@ -117,7 +139,8 @@ PIECE_TYPE Chess::type(PIECE_TYPE t) {
 		case PAO_1:
 		case BING_1:
 		case TYPE_1:
-			return TYPE_1;
+			result = TYPE_1;
+			break;
 		case SHUAI_2:
 		case SHI_2:
 		case XIANG_2:
@@ -126,10 +149,13 @@ PIECE_TYPE Chess::type(PIECE_TYPE t) {
 		case PAO_2:
 		case BING_2:
 		case TYPE_2:
-			return TYPE_2;
+			result = TYPE_2;
+			break;
 		case NONE:
-			return NONE;
+			result = NONE;
+			break;
 	}
+	return result;
 }
 
 void Chess::release() {
@@ -182,7 +208,17 @@ bool Chess::check_inside_xiang2(int x, int y) {
 }
 
 bool Chess::shuai1_move(int before_x, int before_y, int after_x, int after_y) {
-	if (!check_inside_shuai1(before_x, before_y) || 
+	if (m[after_x][after_y] == SHUAI_2 && before_y == after_y) {
+		if (!check_inside_shuai1(before_x, before_y) ||
+			!check_inside_shuai2(after_x, after_y)) return false;
+
+		for (int i = after_x + 1; i < before_x-1; i++) {
+			if (m[i][before_y] != NONE) return false;
+		}
+		return true;
+	}
+
+	if (!check_inside_shuai1(before_x, before_y) ||
 		!check_inside_shuai1(after_x, after_y)) return false;
 
 	return abs(after_x - before_x) + abs(after_y - before_y) == 1;
@@ -276,6 +312,16 @@ bool Chess::pao_move(int before_x, int before_y, int after_x, int after_y) {
 }
 
 bool Chess::shuai2_move(int before_x, int before_y, int after_x, int after_y) {
+	if (m[after_x][after_y] == SHUAI_1 && before_y == after_y) {
+		if (!check_inside_shuai2(before_x, before_y) ||
+			!check_inside_shuai1(after_x, after_y)) return false;
+
+		for (int i = before_x + 1; i < after_x-1; i++) {
+			if (m[i][before_y] != NONE) return false;
+		}
+		return true;
+	}
+
 	if (!check_inside_shuai2(before_x, before_y) || 
 		!check_inside_shuai2(after_x, after_y)) return false;
 
@@ -302,4 +348,8 @@ bool Chess::bing2_move(int before_x, int before_y, int after_x, int after_y) {
 		return after_x == before_x + 1;
 	else
 		return after_x != before_x - 1;
+}
+
+Client* Chess::whose_turn() {
+	return _whose_turn;
 }

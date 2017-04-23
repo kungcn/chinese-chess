@@ -110,7 +110,7 @@ void Server::accept_client() {
     for (int i = 0; i < _max_client_size; i++) {
         if (_client[i] == NULL) {
             have_find = true;
-            _client[i] = new Client(client_addr, new_fd, this);// todo
+            _client[i] = new Client(client_addr, new_fd, i, this);// todo
             printf("store in %d\n", i);
             break;
         }
@@ -131,10 +131,23 @@ void Server::process_client(Client* client_ptr) {
         FD_CLR(client_ptr->fd(), &_fdsr);
         _client[client_ptr->idx()] = NULL;
         delete client_ptr;
-    } else {        // receive data  
-        json recv_json = json::parse(_buf, _buf+nread);
+    } else {        // receive data
+        json recv_json;
+        _buf[nread] = '\0';
+        try {
+            recv_json = json::parse(_buf, _buf+nread);
+        } catch (std::exception e) {
+            printf("json parse error\n");
+            printf("client[%d] send:%s\n", client_ptr->idx(), _buf);
+            return;
+        }
         printf("client[%d] send:%s\n", client_ptr->idx(), recv_json.dump(4).c_str());  
-        client_ptr->transfer(recv_json);
+        try {
+            client_ptr->transfer(recv_json);
+        } catch (std::exception e) {
+            printf("transfer error\n");
+            return;
+        }
     }
 }
 
@@ -145,6 +158,8 @@ json Server::client_list(Client* client_ptr) {
     for (int i = 0; i < _max_client_size; i++) {
         if (_client[i]) {
             json tmp = {{"fd", _client[i]->fd()}, {"name", _client[i]->name()}};
+            tmp["playing"] = _client[i]->playing();
+            tmp["state"] = _client[i]->state_string();
             result["list"].push_back(tmp);
         }
     }

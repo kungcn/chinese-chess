@@ -29,11 +29,12 @@ class Chess {
  	void init_m();
  	bool move(Client* p, int before_x, int before_y, int after_x, int after_y);
  	Client* winner();
+ 	Client* whose_turn();
  	bool game_over();
  	void release();
  private:
  	void check_game_over();
- 	PIECE_TYPE type(PIECE_TYPE t);
+ 	PIECE_TYPE upper_type(PIECE_TYPE t);
  	bool shuai1_move(int before_x, int before_y, int after_x, int after_y);
 	bool shi1_move(int before_x, int before_y, int after_x, int after_y);
 	bool xiang1_move(int before_x, int before_y, int after_x, int after_y);
@@ -57,6 +58,7 @@ class Chess {
  	int _ref;
  	bool _over;
  	Client* _winner;
+ 	Client* _whose_turn;
  	Client* _p1; // player1 first
  	Client* _p2;
 };

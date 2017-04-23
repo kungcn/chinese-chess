@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     json data = {{"name", argv[2]}};
     std::string s = data.dump();
     write(fd, s.c_str(), s.length());
-    char buf[100] = {0};
+    char buf[1024] = {0};
     int nread = read(fd, buf, sizeof(buf));
     buf[nread] = '\0'; 
     if(nread == 0) {  
