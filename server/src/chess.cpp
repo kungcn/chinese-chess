@@ -308,7 +308,10 @@ bool Chess::pao_move(int before_x, int before_y, int after_x, int after_y) {
 	for (int i = before_y+1; i < after_y; i += dy_unit)
 		if (m[before_x][i] != NONE)
 			mid_cnt++;
-	return mid_cnt == 1;
+	if (m[after_x][after_y] == NONE)
+		return mid_cnt == 0; 
+	else
+		return mid_cnt == 1;
 }
 
 bool Chess::shuai2_move(int before_x, int before_y, int after_x, int after_y) {
