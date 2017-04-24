@@ -43,6 +43,7 @@ Shader::Shader(const GLchar* vertexPath, const GLchar *fragmentPath) {
     glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(vertex, 512, NULL, infoLog);
+        cout << "IN: " << vertexPath << " and " << fragmentPath << endl;
         cout << "ERROR::SHADER::VERTEX_COMPILE\n" << infoLog << endl;
     }
     fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -51,6 +52,7 @@ Shader::Shader(const GLchar* vertexPath, const GLchar *fragmentPath) {
     glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(fragment, 512, NULL, infoLog);
+        cout << "IN: " << vertexPath << " and " << fragmentPath << endl;
         cout << "ERROR::SHADER::FRAGMENT_COMPILE\n" << infoLog << endl;
     }glUseProgram(Program);
     Program = glCreateProgram();
@@ -61,6 +63,7 @@ Shader::Shader(const GLchar* vertexPath, const GLchar *fragmentPath) {
     glGetProgramiv(Program, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(Program, 512, NULL, infoLog);
+        cout << "IN: " << vertexPath << " and " << fragmentPath << endl;
         cout << "ERROR::SHADER::PROGRAM_LINK\n" << infoLog<< endl;
     };
 

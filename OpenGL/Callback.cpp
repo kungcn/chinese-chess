@@ -14,10 +14,20 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         else if (action == GLFW_RELEASE)
             keys[key] = false;
     }
-    if (key == GLFW_KEY_P) {
-        if (x + 1 == 10)
-            y = (y + 1) % 9;
-        x = (x + 1) % 10;
+    if (key == GLFW_KEY_I && action == GLFW_PRESS) {
+        LightHandler::light->Triggle(SPOT_LIGHT);
+    }
+    if (key == GLFW_KEY_O && action == GLFW_PRESS) {
+        LightHandler::light->Triggle(DIRECTIONAL_LIGHT);
+    }
+    if (key == GLFW_KEY_P && action == GLFW_PRESS) {
+        LightHandler::light->Triggle(POINT_LIGHT);
+    }
+    if (key == GLFW_KEY_U && action == GLFW_PRESS) {
+        skyboxEnable = !skyboxEnable;
+    }
+    if (key == GLFW_KEY_M && action == GLFW_PRESS) {
+        modelEnable = !modelEnable;
     }
 }
 
@@ -29,7 +39,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
         firstMouse = false;
     }
 
-    camera.ProcessMouseMovement(xpos - lastX, lastY - ypos);
+    CameraHandler::camera->ProcessMouseMovement(xpos - lastX, lastY - ypos);
 
     lastX = xpos;
     lastY = ypos;

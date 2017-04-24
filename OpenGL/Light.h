@@ -7,7 +7,8 @@
 
 #include "Header.h"
 #include "Shader.h"
-#include "Defination.h"
+#include "Path.h"
+#include "Definition.h"
 
 enum Light_Type {
     POINT_LIGHT,
@@ -17,49 +18,41 @@ enum Light_Type {
 
 class Light {
 public:
-    Light(vec3 direction, vec3 ambient, vec3 diffuse, vec3 specular)
-            : shader(objVSPath, directFragPath) {
-        this->direction = direction;
-        this->ambient = ambient;
-        this->diffuse = diffuse;
-        this->specular = specular;
-        type = DIRECTIONAL_LIGHT;
-    }
-    Light(vec3 position, vec3 ambient, vec3 diffuse, vec3 specular, float constant, float linear, float quadratic)
-            : shader(objVSPath, pointFragPath) {
-        this->direction = direction;
-        this->ambient = ambient;
-        this->diffuse = diffuse;
-        this->specular = specular;
-        this->position = position;
-        this->constant = constant;
-        this->linear = linear;
-        this->quadratic = quadratic;
-        type = POINT_LIGHT;
-    }
-    Light(vec3 ambient, vec3 diffuse, vec3 specular, float cutoff, float outerCutOff, float constant, float linear, float quadratic)
-            : shader(objVSPath, spotFragPath) {
-        this->ambient = ambient;
-        this->diffuse = diffuse;
-        this->specular = specular;
-        this->constant = constant;
-        this->linear = linear;
-        this->quadratic = quadratic;
-        this->cutOff = cutoff;
-        this->outerCutOff = outerCutOff;
-        type = SPOT_LIGHT;
-    }
+    Light();
+    void ChangeDirLight(vec3 direction, vec3 ambient, vec3 diffuse, vec3 specular);
+
+    void AddPointLight(vec3 position, vec3 ambient,
+                       vec3 diffuse, vec3 specular,
+                       float constant, float linear, float quadratic);
+
+    void ChangeSpotLight(vec3 ambient, vec3 diffuse, vec3 specular,
+                         float cutoff, float outerCutOff, float constant,
+                         float linear, float quadratic);
+
+    void ChangeMaterial(float shininess, GLuint &diffuseTex, GLuint &specularTex);
+
     void Draw(GLuint &VAO, Shader& shader);
 
+    void Use(const mat4 &model);
+
+    void Triggle(Light_Type lightType);
+    bool dirLightInited, spotLightInited, pointLightInited;
+    bool dirLightEnable, spotLightEnable, pointLightEnable;
+private:
+    vector<vec3> pointPositions;
     Shader shader;
-    vec3 position;
-    vec3 direction;
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
-    float cutOff, outerCutOff, constant, linear, quadratic;
-    Light_Type type;
+    static const string attribHeader;
+    static const vector<string> pointAttribs;
 };
 
+class LightHandler {
+public:
+    static Light* light;
+    static Light* getLight() {
+        if (light == nullptr)
+            light = new Light();
+        return light;
+    }
+};
 
 #endif //CG_PROJECT_LIGHT_H
