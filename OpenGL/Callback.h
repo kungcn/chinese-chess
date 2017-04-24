@@ -6,7 +6,7 @@
 #define CG_PROJECT_CALLBACK_H
 
 #include "Header.h"
-#include "Defination.h"
+#include "Definition.h"
 
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);

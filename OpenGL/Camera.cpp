@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 
+Camera* CameraHandler::camera = new Camera(vec3(0, 10, 3));
 
 mat4 Camera::GetViewMatrix() {
     return lookAt(Position , Position + Front, Up);

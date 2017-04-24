@@ -7,7 +7,7 @@
 
 #include "Header.h"
 #include "Shader.h"
-#include "Defination.h"
+#include "Definition.h"
 
 
 class Mesh {

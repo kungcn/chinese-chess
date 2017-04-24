@@ -3,12 +3,20 @@ project(Chinese_Chess)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES Header.h main.cpp
+set(SOURCE_FILES
+        Header.h main.cpp
         Shader.cpp Shader.h
         Camera.cpp Camera.h
         Model.cpp Model.h
-        Defination.h
-        Callback.cpp Callback.h Defination.cpp auxiliary.cpp auxiliary.h Mesh.cpp Mesh.h Object.cpp Object.h Light.cpp Light.h ChessBoard.cpp ChessBoard.h Chess.cpp Chess.h)
+        Definition.h Definition.cpp
+        Callback.cpp Callback.h
+        auxiliary.cpp auxiliary.h
+        Mesh.cpp Mesh.h
+        Object.cpp Object.h
+        Light.cpp Light.h
+        ChessBoard.cpp ChessBoard.h
+        Chess.cpp Chess.h
+        Judge.cpp Judge.h Path.cpp Path.h)
 
 add_executable(Chinese_Chess ${SOURCE_FILES})
 

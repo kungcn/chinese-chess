@@ -21,24 +21,7 @@ const GLfloat SENSITIVTY = 0.25f;
 const GLfloat ZOOM = 45.0f;
 
 using namespace glm;
-//class CameraHandler {
-//    static Camera* camera = nullptr;
-//    Camera* getCamera(vec3 position = glm::vec3(0, 0, 0), vec3 up = vec3(0, 1, 0),
-//           GLfloat yaw= YAW, GLfloat pitch = PITCH) {
-//        if (camera == nullptr)
-//            camera = new Camera(position, up, yaw, pitch);
-//        return camera;
-//    }
-//    Camera* getCamera(GLfloat posX, GLfloat posY, GLfloat posZ,
-//                      GLfloat upX, GLfloat upY, GLfloat upZ,
-//                      GLfloat yaw, GLfloat pitch) {
-//        if (camera == nullptr)
-//            camera = new Camera(posX, posY, posZ,
-//                                upX, upY, upZ,
-//                                yaw, pitch);
-//        return camera;
-//    }
-//};
+
 
 class Camera {
 public:
@@ -55,8 +38,8 @@ public:
     GLfloat Zoom;
 
     Camera(vec3 position = glm::vec3(0, 0, 0),
-                  vec3 up = vec3(0, 1, 0),
-                  GLfloat yaw= YAW, GLfloat pitch = PITCH)
+           vec3 up = vec3(0, 1, 0),
+           GLfloat yaw= YAW, GLfloat pitch = PITCH)
             : Front(vec3(0, 0, -1)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
     {
         Position = position;
@@ -66,8 +49,8 @@ public:
         this->updateCameraVectors();
     }
     Camera(GLfloat posX, GLfloat posY, GLfloat posZ,
-                  GLfloat upX, GLfloat upY, GLfloat upZ,
-                  GLfloat yaw, GLfloat pitch)
+           GLfloat upX, GLfloat upY, GLfloat upZ,
+           GLfloat yaw, GLfloat pitch)
             : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVTY), Zoom(ZOOM)
     {
         this->Position = glm::vec3(posX, posY, posZ);
@@ -84,6 +67,16 @@ public:
 private:
     void updateCameraVectors();
 
+};
+
+class CameraHandler {
+public:
+    static Camera *camera;
+    static Camera* getCamera() {
+        if (camera == nullptr)
+            camera = new Camera();
+        return camera;
+    }
 };
 
 #endif //CG_PROJECT_CAMERA_H

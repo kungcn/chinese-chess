@@ -6,7 +6,7 @@
 #define CG_PROJECT_OBJECT_H
 
 
-#include "Defination.h"
+#include "Definition.h"
 #include "Shader.h"
 
 class Object {

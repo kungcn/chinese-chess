@@ -7,7 +7,7 @@
 
 #include "Header.h"
 #include "Shader.h"
-#include "Defination.h"
+#include "Definition.h"
 #include "auxiliary.h"
 
 enum Chess_Type {
@@ -35,8 +35,11 @@ public:
     void dead() {
         alive = false;
     }
-    void Draw(GLuint &VAO, Light &light, const mat4 &model, GLuint &diffuseTex, GLuint &specularTex) {
-        drawObject(VAO, light, model, diffuseTex, specularTex);
+    void Draw(GLuint &VAO, const mat4 &model, GLuint &diffuseTex, GLuint &specularTex) {
+        drawObject(VAO, model, diffuseTex, specularTex);
+    }
+    void Draw(Model ourModel, Shader &shader, const mat4 &model) {
+        drawModel(ourModel, shader, model);
     }
     unsigned row, col;
 private:
