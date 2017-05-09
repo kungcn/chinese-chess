@@ -11,17 +11,17 @@ A project called Yi-like(弈乎) to do Chinese chess game on Web, Android and PC
 ### Memebers
 sorted by the first name.
 
-Haicheng Chen: working on Web.
+Haicheng Chen(陈海城): working on Web.
 
-Wenhan Chen: working on Android.
+Wenhan Chen(陈文汉): working on Android.
 
-Zilin Chen: working on frontend.
+Zilin Chen(陈梓麟): working on frontend.
 
-Junning Gong: working on Web.
+Junning Gong(龚俊宁): working on Web.
 
-Zekun Ye: working on Android.
+Zekun Ye(叶泽坤): working on Android.
 
-Hao Zhang: working on PC.
+Hao Zhang(张昊): working on PC.
 
 ## Lisence
 MIT Lisence
