@@ -23,6 +23,32 @@ Zekun Ye(叶泽坤): working on Android.
 
 Hao Zhang(张昊): working on PC.
 
+### Code Rules in Front End
+1. Api放在与components同级的api文件夹下index.js文件内。
+2. components下放置的是可重用的组件，views文件下放置的是各路由指向的页面。
+3. css文件内规范如下：
+```
+//  xxx.css
+<style scoped>
+.xxx-nav {
+}
+</style>
+```
+需要添加scoped属性，类名加上前缀，涉及UI框架内部样式修改时，可以在/static/css/reset.css内修改，但需要注释写明使用在了哪些文件内。当UI框架样式修改时，需要注意scoped属性是否影响了其使用。
+4. 文件在起始处需要注明以下注释：
+```
+//  @author kungcn
+//  create at 2017.06.13
+//  function: nav
+```
+5. 修改他人文件时需要在旁注明以下注释：
+```
+//  @author kungcn
+//  update at 2017.06.13
+//  why to update and how to update
+```
+6. 每一次发起PR前先引入eslint测试，确保代码规范(需要将error设置为warning的提出来讨论后再设置，这个很坑的嘛)
+
 ## Lisence
 MIT Lisence
 
