@@ -4,25 +4,38 @@
   <div class="setting-border border-horizontal"></div>
   <div class="setting-border border-vertical"></div>
   <div class="setting-border border-vertical"></div>
-  <div class="setting-item" v-for="(item, index) in items">
+  <div class="setting-item"
+       v-for="(item, index) in items"
+       :class="{ 'form-active': curr == index, 'form-item-border': index < items.length - 1 }"
+       @touchstart="setActive(index)"
+       @touchend="setActive(-1)">
     <p>{{ item.title }}</p>
     <img src="../../../../assets/pages/UserSetting/btn_r.png" />
     <span>{{ item.text }}</span>
-    <div v-if="index < (items.length - 1)"></div>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  props: [ 'items' ]
+  props: [ 'items' ],
+  data() {
+    return {
+      curr: -1
+    }
+  },
+  methods: {
+    setActive(index) {
+      this.curr = index;
+    }
+  }
 }
 </script>
 
 <style>
 .setting-form {
   position: relative;
-  width: 100%;
+  width: calc(100% - 2vw);
   border: 0;
   height: auto
 }
@@ -56,7 +69,8 @@ export default {
 }
 .setting-item {
   position: relative;
-  width: 100%;
+  width: calc(100% + 2vw);
+  left: -1vw;
   height: 8vw;
   line-height: 8vw;
   padding: 0 3%;
@@ -82,11 +96,10 @@ export default {
   color: #5d5749;
   font-size: 4.5vw;
 }
-.setting-item > div {
-  width: calc(100% + 6vw);
-  height: 100%;
-  position: relative;
-  left: -3vw;
+.form-active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.form-item-border {
   border-bottom: 1px solid #927c74;
 }
 </style>

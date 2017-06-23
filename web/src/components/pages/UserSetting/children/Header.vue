@@ -2,16 +2,22 @@
 <div id="setting-header">
   <div id="setting-back"
        @click="goBack()"
-       @mouseup="changeState(false)"
-       @mousedown="changeState(true)">
-    <img :src="img.back_btn" v-if="!isClick" />
-    <img :src="img.back_btn_press" v-if="isClick" />
+       @touchend="setBackBtn(false)"
+       @touchstart="setBackBtn(true)">
+    <img :src="img.back_btn" v-if="status.bck" />
+    <img :src="img.back_btn_press" v-else />
   </div>
   <div id="setting-header-user"
        class="background-container"
        :style="{ backgroundImage: 'url(' + img.userbg + ')' }">
-    <div id="setting-header-user-portrait">
-       <img :src="img.usr" v-if="img.usr" />
+    <div id="setting-header-user-portrait"
+         @touchstart="setUsrBtn(true)"
+         @touchend="setUsrBtn(false)">
+       <img v-if="img.usr"
+            :src="img.usr"
+            class="center" />
+       <div class="center"
+            v-if="status.usr"></div>
     </div>
     <p>{{ usrAccount }}</p>
   </div>
@@ -29,7 +35,10 @@ export default {
         back_btn: require('@/assets/pages/UserSetting/back_btn.png'),
         usr: null
       },
-      isClick: false
+      status: {
+        bck: false,
+        usr: false
+      }
     }
   },
   created: function() {
@@ -55,8 +64,11 @@ export default {
     goBack() {
       console.log('返回主页')
     },
-    changeState(state) {
-      this.isClick = state
+    setBackBtn(status) {
+      this.status.bck = status
+    },
+    setUsrBtn(status) {
+      this.status.usr = status
     }
   }
 }
@@ -95,11 +107,13 @@ export default {
   background-color: #d0b399
 }
 #setting-header-user-portrait > img {
-  position: absolute;
   width: 90%; height: 90%;
   border-radius: 100%;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
+}
+#setting-header-user-portrait > div {
+  width: 100%; height: 100%;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.3)
 }
 #setting-header-user > p {
   position: relative;

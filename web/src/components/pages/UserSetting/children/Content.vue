@@ -4,6 +4,7 @@
 
   <v-form :items="form1" class="form-item"></v-form>
   <v-form :items="form2" class="form-item"></v-form>
+  <v-form :items="form3" class="form-item"></v-form>
 
   </div>
 </div>
@@ -20,28 +21,17 @@ export default {
   data() {
     return {
       form1: [
-        {
-          title: '我的等级',
-          text: '九级棋士(150)'
-        },
-        {
-          title: '昵称',
-          text: '叶泽坤'
-        }
+        { title: '游戏ID', text: '20735793' },
+        { title: '我的等级', text: '九级棋士(150)' },
+        { title: '昵称', text: '叶泽坤' }
       ],
       form2: [
-        {
-          title: '性别',
-          text: '男'
-        },
-        {
-          title: '地区',
-          text: '广东省'
-        },
-        {
-          title: '个性签名',
-          text: '这人很懒，...'
-        }
+        { title: '性别', text: '男' },
+        { title: '地区', text: '广东省' },
+        { title: '个性签名', text: '这人很懒，...' }
+      ],
+      form3: [
+        { title: '手机', text: '未绑定' }
       ]
     }
   }
@@ -57,12 +47,15 @@ export default {
 #setting-content-container {
   position: relative;
   width: 78%;
-  height: 100%;
+  max-height: 95%;
+  height: auto;
   margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: none;
   padding: 4%;
 }
 .form-item {
-  margin: 5vh 0;
+  margin-bottom: 5vh;
 }
 
 </style>
