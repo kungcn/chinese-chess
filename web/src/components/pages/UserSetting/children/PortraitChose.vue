@@ -51,14 +51,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      status: 'getBottomPopupStatus',
+      status: 'getPortraitPopupStatus',
       portrait: 'getPortrait',
       curPortraitIndex: 'getPortraitIndex'
     })
   },
   methods: {
     close() {
-      this.$store.commit('setBottomPopup', false);
+      this.$store.commit('setPopupStatus', { name: 'portrait', value: false });
       this.setCurrPortrait();
     },
     setCurrPortrait() {

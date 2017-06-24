@@ -26,13 +26,23 @@ export default {
         { title: '昵称', text: this.user.name }
       ],
       form2: [
-        { title: '性别', text: this.user.gender },
+        { title: '性别', text: this.user.gender,
+          callback: this.openPopup('gender', this)
+        },
         { title: '地区', text: this.user.province },
         { title: '个性签名', text: this.user.sign.substring(0, 5) + '...' }
       ],
       form3: [
         { title: '手机', text: this.user.phone || '未绑定' }
       ]
+    }
+  },
+  methods: {
+    openPopup(name, self) {
+      return function() {
+        console.log(name, self);
+        self.$store.commit('setPopupStatus', { name: name, value: true })
+      }
     }
   }
 }

@@ -47,13 +47,11 @@ export default {
   created: function() {
     this.setCurrPortrait();
   },
-  // 映射全局变量 city
   computed: {
     ...mapGetters({
       portrait: 'getPortrait',
     })
   },
-  // 为全局变量 city 注册监听函数
   watch: {
     'portraitIndex': 'setCurrPortrait'
   },
@@ -72,7 +70,7 @@ export default {
       this.img.usr = this.portrait.items[this.portraitIndex];
     },
     showBottomPopup() {
-      this.$store.commit('setBottomPopup', true);
+      this.$store.commit('setPopupStatus', { name: 'portrait', value: true });
     }
   }
 }
