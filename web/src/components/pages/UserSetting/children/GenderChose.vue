@@ -78,6 +78,7 @@ export default {
     setGender(gender) {
       this.$store.commit('setUserInfo', { gender });
       this.close();
+      this.$store.commit('setPopupStatus', { name: 'toast', value: true });
     }
   }
 }

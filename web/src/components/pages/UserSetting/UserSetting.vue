@@ -10,6 +10,7 @@
   <v-gender-chose></v-gender-chose>
   <v-region-chose></v-region-chose>
   <v-dialog></v-dialog>
+  <v-toast></v-toast>
 </div>
 </template>
 
@@ -20,12 +21,13 @@ import vPortraitChose from './children/PortraitChose'
 import vGenderChose from './children/GenderChose'
 import vRegionChose from './children/RegionChose'
 import vDialog from './children/Dialog'
+import vToast from './children/Toast';
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     vHeader, vContent, vPortraitChose, vGenderChose,
-    vRegionChose, vDialog
+    vRegionChose, vDialog, vToast
   },
   computed: {
     ...mapGetters({

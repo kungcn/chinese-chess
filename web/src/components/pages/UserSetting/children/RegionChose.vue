@@ -96,7 +96,10 @@ export default {
   },
   methods: {
     close() {
-      this.$store.commit('setPopupStatus', { name: 'region', value: false });
+      this.$store.commit('setPopupStatus', [
+        { name: 'region', value: false },
+        { name: 'toast', value: true }
+      ]);
     },
     setRegion() {
       this.$store.commit('setUserInfo',

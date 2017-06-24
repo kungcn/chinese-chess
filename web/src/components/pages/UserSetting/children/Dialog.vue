@@ -30,6 +30,7 @@ export default {
       data[this.dialogInfo.type] = this.dialogInfo.text || this.dialogInfo.default;
       this.$store.commit('setUserInfo', data);
       this.close();
+      this.$store.commit('setPopupStatus', { name: 'toast', value: true });
     }
   }
 }
