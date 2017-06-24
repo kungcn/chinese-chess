@@ -126,11 +126,10 @@ class="background-container">
 
 import vHeader from './children/Header'
 import vContent from './children/Content'
-import vBottomPopup from './children/BottonPopup'
 
 export default {
   components: {
-    vHeader, vContent,  vBottomPopup
+    vHeader, vContent
   },
   data() {
     return {
@@ -217,8 +216,8 @@ export default {
   }
 
   .grade_description {
-    margin-top: 10%; 
-    margin-bottom: 50%;
+    margin-top: 10%;
+    margin-bottom: 20%;
   }
 
   .grade_item {

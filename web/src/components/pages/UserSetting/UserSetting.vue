@@ -3,27 +3,33 @@
      :style="{ backgroundImage: 'url(' + img + ')' }"
      class="background-container">
   <v-header
-    :usrAccount="user.account"></v-header>
-  <v-content></v-content>
-  <v-bottom-popup></v-bottom-popup>
+    :usrAccount="user.name"
+    :portraitIndex="user.portrait"></v-header>
+  <v-content :user="user"></v-content>
+  <v-portrait-chose></v-portrait-chose>
+  <v-gender-chose></v-gender-chose>
 </div>
 </template>
 
 <script>
 import vHeader from './children/Header'
 import vContent from './children/Content'
-import vBottomPopup from './children/BottonPopup'
+import vPortraitChose from './children/PortraitChose'
+import vGenderChose from './children/GenderChose'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
-    vHeader, vContent,  vBottomPopup
+    vHeader, vContent, vPortraitChose, vGenderChose
+  },
+  computed: {
+    ...mapGetters({
+      user: 'getUserInfo'
+    })
   },
   data() {
     return {
-      img: require('@/assets/pages/UserSetting/bg.png'),
-      user: {
-        type: 1,
-        account: '陈海城'
-      }
+      img: require('@/assets/pages/UserSetting/bg.png')
     }
   }
 }

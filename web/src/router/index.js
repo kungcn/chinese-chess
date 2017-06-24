@@ -9,7 +9,7 @@ Vue.use(Router)
 export default new Router({
     routes: [{
         path: '/',
-        name: 'UserSetting',
-        component: UserSetting
+        name: 'Home',
+        component: Home
     }]
 })

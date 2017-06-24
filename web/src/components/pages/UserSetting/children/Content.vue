@@ -17,22 +17,32 @@ export default {
   components: {
     vForm
   },
-  props: [ 'level', 'usrAccount' ],
+  props: [ 'user' ],
   data() {
     return {
       form1: [
-        { title: '游戏ID', text: '20735793' },
-        { title: '我的等级', text: '九级棋士(150)' },
-        { title: '昵称', text: '叶泽坤' }
+        { title: '游戏ID', text: this.user.id },
+        { title: '我的等级', text: this.user.level },
+        { title: '昵称', text: this.user.name }
       ],
       form2: [
-        { title: '性别', text: '男' },
-        { title: '地区', text: '广东省' },
-        { title: '个性签名', text: '这人很懒，...' }
+        { title: '性别', text: this.user.gender,
+          callback: this.openPopup('gender', this)
+        },
+        { title: '地区', text: this.user.province },
+        { title: '个性签名', text: this.user.sign.substring(0, 5) + '...' }
       ],
       form3: [
-        { title: '手机', text: '未绑定' }
+        { title: '手机', text: this.user.phone || '未绑定' }
       ]
+    }
+  },
+  methods: {
+    openPopup(name, self) {
+      return function() {
+        console.log(name, self);
+        self.$store.commit('setPopupStatus', { name: name, value: true })
+      }
     }
   }
 }
