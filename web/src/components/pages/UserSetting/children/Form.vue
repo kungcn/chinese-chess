@@ -8,9 +8,10 @@
        v-for="(item, index) in items"
        :class="{ 'form-active': curr == index, 'form-item-border': index < items.length - 1 }"
        @touchstart="setActive(index)"
-       @touchend="setActive(-1)">
+       @touchend="setActive(-1)"
+       @click="callback(item.callback)">
     <p>{{ item.title }}</p>
-    <img src="../../../../assets/pages/UserSetting/btn_r.png" />
+    
     <span>{{ item.text }}</span>
   </div>
 </div>
@@ -27,6 +28,9 @@ export default {
   methods: {
     setActive(index) {
       this.curr = index;
+    },
+    callback(fun) {
+      if (fun) fun()
     }
   }
 }

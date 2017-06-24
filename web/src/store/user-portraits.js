@@ -5,7 +5,7 @@ import Vue from 'vue'
 export default {
   // 单例化数据
   state: {
-    protrait: {
+    portrait: {
       items: (function() {
         let result = [];
         for (let i = 0; i < 18; ++i) {
@@ -13,27 +13,26 @@ export default {
         }
         return result;
       })(),
-      size: 19,
-      curr: 5
+      size: 19
     }
   },
   // 修改状态的事件回调函数
-  mutations: {
+  /*mutations: {
     setCurr(state, ptr) {
       if (ptr < state.protrait.size)
         state.protrait.curr = ptr;
     }
-  },
+  },*/
   // 状态获取函数
   getters: {
-    getProtrait(state) {
-      return state.protrait;
+    getPortrait(state) {
+      return state.portrait;
     }
   },
   // 分发修改状态的事件
-  actions: {
+  /*actions: {
     cityChange(context, curr) {
       context.commit('setCurr', curr);
     }
-  }
+  }*/
 }
