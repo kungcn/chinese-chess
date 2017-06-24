@@ -10,7 +10,7 @@
        @touchstart="setActive(index)"
        @touchend="setActive(-1)">
     <p>{{ item.title }}</p>
-    <img src="../../../../assets/pages/UserSetting/btn_r.png" />
+    
     <span>{{ item.text }}</span>
   </div>
 </div>

@@ -9,7 +9,7 @@ Vue.use(Router)
 export default new Router({
     routes: [{
         path: '/',
-        name: 'Grade',
-        component: Grade
+        name: 'UserSetting',
+        component: UserSetting
     }]
 })

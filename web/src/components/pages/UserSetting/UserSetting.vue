@@ -13,7 +13,6 @@
 import vHeader from './children/Header'
 import vContent from './children/Content'
 import vBottomPopup from './children/BottonPopup'
-
 export default {
   components: {
     vHeader, vContent,  vBottomPopup
