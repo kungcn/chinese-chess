@@ -23,7 +23,7 @@ export default {
       img: require('@/assets/pages/UserSetting/bg.png'),
       user: {
         type: 1,
-        account: '叶泽坤'
+        account: '陈海城'
       }
     }
   }
