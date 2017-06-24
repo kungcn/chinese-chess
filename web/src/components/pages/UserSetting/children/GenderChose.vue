@@ -77,6 +77,7 @@ export default {
     },
     setGender(gender) {
       this.$store.commit('setUserInfo', { gender });
+      this.close();
     }
   }
 }
