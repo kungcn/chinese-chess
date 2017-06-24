@@ -12,7 +12,8 @@
        :style="{ backgroundImage: 'url(' + img.userbg + ')' }">
     <div id="setting-header-user-portrait"
          @touchstart="setUsrBtn(true)"
-         @touchend="setUsrBtn(false)">
+         @touchend="setUsrBtn(false)"
+         @click="showBottomPopup()">
        <img v-if="img.usr"
             :src="img.usr"
             class="center" />
@@ -25,8 +26,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: [ 'usrType', 'usrAccount' ],
+  props: [ 'usrAccount' ],
   data() {
     return {
       img: {
@@ -42,22 +45,17 @@ export default {
     }
   },
   created: function() {
-    switch(this.usrType) {
-      case 1:
-        this.img.usr = require('@/assets/portraits/man_head01.png');
-        break;
-      case 2:
-        this.img.usr = require('@/assets/portraits/man_head02.png');
-        break;
-      case 3:
-        this.img.usr = require('@/assets/portraits/women_head01.png');
-        break;
-      case 4:
-        this.img.usr = require('@/assets/portraits/women_head02.png');
-        break;
-      default:
-        this.img.usr = require('@/assets/portraits/default_head.png');
-    }
+    this.setCurrProtrait();
+  },
+  // 映射全局变量 city
+  computed: {
+    ...mapGetters({
+      protrait: 'getProtrait'
+    })
+  },
+  // 为全局变量 city 注册监听函数
+  watch: {
+    'protrait.curr': 'setCurrProtrait'
   },
   methods: {
     // TODO
@@ -69,6 +67,12 @@ export default {
     },
     setUsrBtn(status) {
       this.status.usr = status
+    },
+    setCurrProtrait() {
+      this.img.usr = this.protrait.items[this.protrait.curr]
+    },
+    showBottomPopup() {
+      this.$store.commit('setBottomPopup', true)
     }
   }
 }

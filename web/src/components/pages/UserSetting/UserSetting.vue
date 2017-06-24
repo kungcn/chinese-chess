@@ -3,19 +3,20 @@
      :style="{ backgroundImage: 'url(' + img + ')' }"
      class="background-container">
   <v-header
-    :usrType="user.type"
     :usrAccount="user.account"></v-header>
   <v-content></v-content>
+  <v-bottom-popup></v-bottom-popup>
 </div>
 </template>
 
 <script>
 import vHeader from './children/Header'
 import vContent from './children/Content'
+import vBottomPopup from './children/BottonPopup'
 
 export default {
   components: {
-    vHeader, vContent
+    vHeader, vContent,  vBottomPopup
   },
   data() {
     return {
