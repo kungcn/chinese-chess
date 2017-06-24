@@ -20,29 +20,44 @@ export default {
   props: [ 'user' ],
   data() {
     return {
-      form1: [
+      form1: null,
+      form2: null,
+      form3: null
+    }
+  },
+  watch: {
+    user: {
+      handler: function() {
+        this.assign();
+      },
+      deep: true
+    }
+  },
+  created: function() {
+    this.assign();
+  },
+  methods: {
+    openPopup(name, self) {
+      return function() {
+        self.$store.commit('setPopupStatus', { name: name, value: true })
+      }
+    },
+    assign() {
+      this.form1 = [
         { title: '游戏ID', text: this.user.id },
         { title: '我的等级', text: this.user.level },
         { title: '昵称', text: this.user.name }
       ],
-      form2: [
+      this.form2 = [
         { title: '性别', text: this.user.gender,
           callback: this.openPopup('gender', this)
         },
         { title: '地区', text: this.user.province },
         { title: '个性签名', text: this.user.sign.substring(0, 5) + '...' }
       ],
-      form3: [
+      this.form3 = [
         { title: '手机', text: this.user.phone || '未绑定' }
       ]
-    }
-  },
-  methods: {
-    openPopup(name, self) {
-      return function() {
-        console.log(name, self);
-        self.$store.commit('setPopupStatus', { name: name, value: true })
-      }
     }
   }
 }
