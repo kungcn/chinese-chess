@@ -14,7 +14,7 @@
 
     <div>
       <ul id="protrait-list">
-        <li v-for="(item, index) in protrait.items">
+        <li v-for="(item, index) in portrait.items">
           <img :src="item"
                @click="setPortrait(index)" />
         </li>
@@ -43,10 +43,7 @@ export default {
   data() {
     return {
       bgUrl: require('@/assets/pages/UserSetting/dialog_bg_1.png'),
-      currPortrait: {
-        index: -1,
-        img: null
-      }
+      currPortrait: { index: -1, img: null }
     }
   },
   created: function() {
@@ -54,24 +51,26 @@ export default {
   },
   computed: {
     ...mapGetters({
-      status: 'getBottomPopupStatus',
-      protrait: 'getProtrait'
+      status: 'getPortraitPopupStatus',
+      portrait: 'getPortrait',
+      curPortraitIndex: 'getPortraitIndex'
     })
   },
   methods: {
     close() {
-     this.$store.commit('setBottomPopup', false);
+      this.$store.commit('setPopupStatus', { name: 'portrait', value: false });
+      this.setCurrPortrait();
     },
     setCurrPortrait() {
-      this.currPortrait.img = this.protrait.items[this.protrait.curr];
-      this.currPortrait.index = this.protrait.curr;
+      this.currPortrait.img = this.portrait.items[this.curPortraitIndex];
+      this.currPortrait.index = this.curPortraitIndex;
     },
     setPortrait(index) {
-      this.currPortrait.img = this.protrait.items[index];
+      this.currPortrait.img = this.portrait.items[index];
       this.currPortrait.index = index;
     },
     makeSure() {
-      this.$store.commit('setCurr', this.currPortrait.index);
+      this.$store.commit('setPortrait', this.currPortrait.index);
       setTimeout(this.close, 100);
     }
   }

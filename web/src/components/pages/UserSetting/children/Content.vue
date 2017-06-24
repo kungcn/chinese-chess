@@ -17,21 +17,68 @@ export default {
   components: {
     vForm
   },
-  props: [ 'level', 'usrAccount' ],
+  props: [ 'user' ],
   data() {
     return {
-      form1: [
-        { title: '游戏ID', text: '20735793' },
-        { title: '我的等级', text: '九级棋士(150)' },
-        { title: '昵称', text: '叶泽坤' }
+      form1: null,
+      form2: null,
+      form3: null
+    }
+  },
+  watch: {
+    user: {
+      handler: function() {
+        this.assign();
+      },
+      deep: true
+    }
+  },
+  created: function() {
+    this.assign();
+  },
+  methods: {
+    openPopup(name, data = null) {
+      self = this;
+      return function() {
+        if (name == 'dialog') {
+          self.$store.commit('setDialogInfo', data);
+        }
+        self.$store.commit('setPopupStatus', { name: name, value: true })
+      }
+    },
+    assign() {
+      this.form1 = [
+        { title: '游戏ID', text: this.user.id },
+        { title: '我的等级', text: this.user.level },
+        {
+          title: '昵称', text: this.user.name,
+          callback: this.openPopup('dialog', {
+            title: '昵称',
+            text: this.user.name,
+            type: 'name',
+            default: '未命名'
+          })
+        }
       ],
-      form2: [
-        { title: '性别', text: '男' },
-        { title: '地区', text: '广东省' },
-        { title: '个性签名', text: '这人很懒，...' }
+      this.form2 = [
+        {
+          title: '性别', text: this.user.gender,
+          callback: this.openPopup('gender')
+        }, {
+          title: '地区', text: (this.user.region.province != this.user.region.city) ? this.user.region.province + this.user.region.city : this.user.region.city,
+          callback: this.openPopup('region')
+        }, {
+          title: '个性签名', text: this.user.sign.substring(0, 5) + '...',
+          callback: this.openPopup('dialog', {
+            title: '个性签名',
+            text:  this.user.sign,
+            type: 'sign',
+            default: '这人很懒，什么都没留下'
+          })
+        }
       ],
-      form3: [
-        { title: '手机', text: '未绑定' }
+      this.form3 = [
+        { title: '手机', text: this.user.phone || '未绑定' }
       ]
     }
   }
