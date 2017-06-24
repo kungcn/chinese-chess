@@ -15,7 +15,7 @@ Haicheng Chen(陈海城): working on Web & frontend.
 
 Wenhan Chen(陈文汉): working on Web.
 
-Zilin Chen(陈梓麟): working on frontend.
+Zilin Chen(陈梓麟): working on backend.
 
 Junning Gong(龚俊宁): working on Web.
 
