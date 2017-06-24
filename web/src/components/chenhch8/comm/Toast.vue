@@ -1,6 +1,6 @@
 <template>
 <div>
-  <mu-toast v-if="toast" message="设置成功"/>
+  <mu-toast v-if="toast" :message="msg"/>
 </div>
 </template>
 
@@ -8,12 +8,10 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  created: function() {
-    this.$on('show-toast', this.showToast)
-  },
   computed: {
     ...mapGetters({
-      toast: 'getToastPopupStatus'
+      toast: 'getToastPopupStatus',
+      msg: 'getToastMessage'
     })
   },
   watch: {

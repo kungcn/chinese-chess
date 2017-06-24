@@ -14,7 +14,7 @@
          @click="setGender('男')">
       <p>
         <span>
-          <img src="../../../../assets/pages/UserSetting/man.png">
+          <img src="../../../../../assets/pages/UserSetting/man.png">
           <span>男</span>
         </span>
       </p>
@@ -28,7 +28,7 @@
          @click="setGender('女')">
       <p>
         <span>
-          <img src="../../../../assets/pages/UserSetting/woman.png">
+          <img src="../../../../../assets/pages/UserSetting/woman.png">
           <span>女</span>
         </span>
       </p>
@@ -42,7 +42,7 @@
          @click="setGender('保密')">
       <p>
         <span>
-          <img src="../../../../assets/pages/UserSetting/private.png">
+          <img src="../../../../../assets/pages/UserSetting/private.png">
           <span>保密</span>
         </span>
       </p>
@@ -78,6 +78,7 @@ export default {
     setGender(gender) {
       this.$store.commit('setUserInfo', { gender });
       this.close();
+      this.$store.commit('setToastMessage', '修改成功');
       this.$store.commit('setPopupStatus', { name: 'toast', value: true });
     }
   }

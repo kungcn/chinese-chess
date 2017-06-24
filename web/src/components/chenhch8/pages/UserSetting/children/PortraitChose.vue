@@ -75,6 +75,7 @@ export default {
       if (this.timer) clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.close();
+        this.$store.commit('setToastMessage', '修改成功');
         this.$store.commit('setPopupStatus', { name: 'toast', value: true });
       }, 100);
     }

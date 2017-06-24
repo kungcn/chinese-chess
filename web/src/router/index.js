@@ -1,15 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import UserSetting from '@/components/pages/UserSetting/UserSetting'
-import Home from '@/components/pages/Home/Home'
-import Grade from '@/components/pages/UserSetting/Grade'
+import UserSetting from '@/components/chenhch8/pages/UserSetting/UserSetting'
+import Grade from '@/components/chenhch8/pages/Grade/Grade'
 
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
-        path: '/',
-        name: 'Grade',
-        component: Grade
-    }]
+  routes: [{
+    path: '/',
+    name: 'UserSetting',
+    component: UserSetting
+  }, {
+    path: '/grade',
+    name: 'Grade',
+    component: Grade
+  }, {
+    path: '*',
+    redirect: '/'
+  }]
 })

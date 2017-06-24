@@ -4,6 +4,7 @@ import UserPortraits from './user-portraits'
 import Popup from './popup'
 import UserInfo from './user-info'
 import Dialog from './dialog'
+import Toast from './toast'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     UserPortraits,
     Popup,
     UserInfo,
-    Dialog
+    Dialog,
+    Toast
   }
 })

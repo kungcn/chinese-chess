@@ -11,7 +11,7 @@
        @touchend="setActive(-1)"
        @click="callback(item.callback)">
     <p>{{ item.title }}</p>
-    
+    <img src="../../../assets/pages/UserSetting/btn_r.png" />
     <span>{{ item.text }}</span>
   </div>
 </div>
@@ -75,8 +75,8 @@ export default {
   position: relative;
   width: calc(100% + 2vw);
   left: -1vw;
-  height: 8vw;
-  line-height: 8vw;
+  height: 10vw;
+  line-height: 10vw;
   padding: 0 3%;
   font-size: 5vw;
   cursor: pointer;
