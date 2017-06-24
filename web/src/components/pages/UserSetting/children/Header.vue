@@ -2,16 +2,23 @@
 <div id="setting-header">
   <div id="setting-back"
        @click="goBack()"
-       @mouseup="changeState(false)"
-       @mousedown="changeState(true)">
-    <img :src="img.back_btn" v-if="!isClick" />
-    <img :src="img.back_btn_press" v-if="isClick" />
+       @touchend="setBackBtn(false)"
+       @touchstart="setBackBtn(true)">
+    <img :src="img.back_btn" v-if="status.bck" />
+    <img :src="img.back_btn_press" v-else />
   </div>
   <div id="setting-header-user"
        class="background-container"
        :style="{ backgroundImage: 'url(' + img.userbg + ')' }">
-    <div id="setting-header-user-portrait">
-       <img :src="img.usr" v-if="img.usr" />
+    <div id="setting-header-user-portrait"
+         @touchstart="setUsrBtn(true)"
+         @touchend="setUsrBtn(false)"
+         @click="showBottomPopup()">
+       <img v-if="img.usr"
+            :src="img.usr"
+            class="center" />
+       <div class="center"
+            v-if="status.usr"></div>
     </div>
     <p>{{ usrAccount }}</p>
   </div>
@@ -19,8 +26,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: [ 'usrType', 'usrAccount' ],
+  props: [ 'usrAccount' ],
   data() {
     return {
       img: {
@@ -29,34 +38,41 @@ export default {
         back_btn: require('@/assets/pages/UserSetting/back_btn.png'),
         usr: null
       },
-      isClick: false
+      status: {
+        bck: false,
+        usr: false
+      }
     }
   },
   created: function() {
-    switch(this.usrType) {
-      case 1:
-        this.img.usr = require('@/assets/portraits/man_head01.png');
-        break;
-      case 2:
-        this.img.usr = require('@/assets/portraits/man_head02.png');
-        break;
-      case 3:
-        this.img.usr = require('@/assets/portraits/women_head01.png');
-        break;
-      case 4:
-        this.img.usr = require('@/assets/portraits/women_head02.png');
-        break;
-      default:
-        this.img.usr = require('@/assets/portraits/default_head.png');
-    }
+    this.setCurrProtrait();
+  },
+  // 映射全局变量 city
+  computed: {
+    ...mapGetters({
+      protrait: 'getProtrait'
+    })
+  },
+  // 为全局变量 city 注册监听函数
+  watch: {
+    'protrait.curr': 'setCurrProtrait'
   },
   methods: {
     // TODO
     goBack() {
       console.log('返回主页')
     },
-    changeState(state) {
-      this.isClick = state
+    setBackBtn(status) {
+      this.status.bck = status
+    },
+    setUsrBtn(status) {
+      this.status.usr = status
+    },
+    setCurrProtrait() {
+      this.img.usr = this.protrait.items[this.protrait.curr]
+    },
+    showBottomPopup() {
+      this.$store.commit('setBottomPopup', true)
     }
   }
 }
@@ -95,11 +111,13 @@ export default {
   background-color: #d0b399
 }
 #setting-header-user-portrait > img {
-  position: absolute;
   width: 90%; height: 90%;
   border-radius: 100%;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
+}
+#setting-header-user-portrait > div {
+  width: 100%; height: 100%;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.3)
 }
 #setting-header-user > p {
   position: relative;
