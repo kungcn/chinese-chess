@@ -7,14 +7,14 @@ export default {
     user: {
       id: '20735793',
       level: '九级棋士',
-      name: '叶泽坤',
+      name: '冰茶浓',
       portrait: 2,
       gender: '男',
       region: {
         province: '广东',
         city: '广州'
       },
-      sign: '这人很懒，啥都没写',
+      sign: '这人很懒，什么都没留下',
       phone: null,
       gameDetail: {
         sum: 30,
@@ -26,6 +26,7 @@ export default {
   mutations: {
     setUserInfo(state, info) {
       state.user = {
+        id: state.user.id,
         level: info.level || state.user.level,
         name: info.name || state.user.name,
         portrait: info.portrait || state.user.portrait,

@@ -37,8 +37,12 @@ export default {
     this.assign();
   },
   methods: {
-    openPopup(name, self) {
+    openPopup(name, data = null) {
+      self = this;
       return function() {
+        if (name == 'dialog') {
+          self.$store.commit('setDialogInfo', data);
+        }
         self.$store.commit('setPopupStatus', { name: name, value: true })
       }
     },
@@ -46,17 +50,32 @@ export default {
       this.form1 = [
         { title: '游戏ID', text: this.user.id },
         { title: '我的等级', text: this.user.level },
-        { title: '昵称', text: this.user.name }
+        {
+          title: '昵称', text: this.user.name,
+          callback: this.openPopup('dialog', {
+            title: '昵称',
+            text: this.user.name,
+            type: 'name',
+            default: '未命名'
+          })
+        }
       ],
       this.form2 = [
         {
           title: '性别', text: this.user.gender,
-          callback: this.openPopup('gender', this)
+          callback: this.openPopup('gender')
         }, {
-          title: '地区', text: this.user.region.province + this.user.region.city,
-          callback: this.openPopup('region', this)
-        },
-        { title: '个性签名', text: this.user.sign.substring(0, 5) + '...' }
+          title: '地区', text: (this.user.region.province != this.user.region.city) ? this.user.region.province + this.user.region.city : this.user.region.city,
+          callback: this.openPopup('region')
+        }, {
+          title: '个性签名', text: this.user.sign.substring(0, 5) + '...',
+          callback: this.openPopup('dialog', {
+            title: '个性签名',
+            text:  this.user.sign,
+            type: 'sign',
+            default: '这人很懒，什么都没留下'
+          })
+        }
       ],
       this.form3 = [
         { title: '手机', text: this.user.phone || '未绑定' }
