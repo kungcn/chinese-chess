@@ -10,7 +10,10 @@ export default {
       name: '叶泽坤',
       portrait: 2,
       gender: '男',
-      province: '广东省',
+      region: {
+        province: '广东',
+        city: '广州'
+      },
       sign: '这人很懒，啥都没写',
       phone: null,
       gameDetail: {
@@ -26,8 +29,8 @@ export default {
         level: info.level || state.user.level,
         name: info.name || state.user.name,
         portrait: info.portrait || state.user.portrait,
-        gender: info.gender || state.user.province,
-        province: info.province || state.user.province,
+        gender: info.gender || state.user.gender,
+        region: info.region || state.user.region,
         sign: info.sign || state.user.sign,
         phone: info.phone || state.user.phone,
         gameDetail: info.gameDetail || state.user.gameDetail
@@ -43,6 +46,9 @@ export default {
     },
     getPortraitIndex(state) {
       return state.user.portrait;
+    },
+    getUserRegion(state) {
+      return state.user.region;
     }
   }
 }

@@ -49,10 +49,13 @@ export default {
         { title: '昵称', text: this.user.name }
       ],
       this.form2 = [
-        { title: '性别', text: this.user.gender,
+        {
+          title: '性别', text: this.user.gender,
           callback: this.openPopup('gender', this)
+        }, {
+          title: '地区', text: this.user.region.province + this.user.region.city,
+          callback: this.openPopup('region', this)
         },
-        { title: '地区', text: this.user.province },
         { title: '个性签名', text: this.user.sign.substring(0, 5) + '...' }
       ],
       this.form3 = [

@@ -8,6 +8,7 @@
   <v-content :user="user"></v-content>
   <v-portrait-chose></v-portrait-chose>
   <v-gender-chose></v-gender-chose>
+  <v-region-chose></v-region-chose>
 </div>
 </template>
 
@@ -16,11 +17,13 @@ import vHeader from './children/Header'
 import vContent from './children/Content'
 import vPortraitChose from './children/PortraitChose'
 import vGenderChose from './children/GenderChose'
+import vRegionChose from './children/RegionChose'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
-    vHeader, vContent, vPortraitChose, vGenderChose
+    vHeader, vContent, vPortraitChose, vGenderChose,
+    vRegionChose
   },
   computed: {
     ...mapGetters({
