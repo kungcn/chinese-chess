@@ -8,7 +8,6 @@ export default {
   },
   mutations: {
     setBottomPopup(state, status) {
-      console.log('here:', status);
       state.bottom_popup_state = status;
     }
   },

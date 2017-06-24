@@ -29,7 +29,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  props: [ 'usrAccount' ],
+  props: [ 'usrAccount', 'portraitIndex' ],
   data() {
     return {
       img: {
@@ -45,34 +45,34 @@ export default {
     }
   },
   created: function() {
-    this.setCurrProtrait();
+    this.setCurrPortrait();
   },
   // 映射全局变量 city
   computed: {
     ...mapGetters({
-      protrait: 'getProtrait'
+      portrait: 'getPortrait',
     })
   },
   // 为全局变量 city 注册监听函数
   watch: {
-    'protrait.curr': 'setCurrProtrait'
+    'portraitIndex': 'setCurrPortrait'
   },
   methods: {
     // TODO
     goBack() {
-      console.log('返回主页')
+      console.log('返回主页');
     },
     setBackBtn(status) {
-      this.status.bck = status
+      this.status.bck = status;
     },
     setUsrBtn(status) {
-      this.status.usr = status
+      this.status.usr = status;
     },
-    setCurrProtrait() {
-      this.img.usr = this.protrait.items[this.protrait.curr]
+    setCurrPortrait() {
+      this.img.usr = this.portrait.items[this.portraitIndex];
     },
     showBottomPopup() {
-      this.$store.commit('setBottomPopup', true)
+      this.$store.commit('setBottomPopup', true);
     }
   }
 }
