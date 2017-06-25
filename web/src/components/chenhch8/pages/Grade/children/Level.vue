@@ -10,7 +10,7 @@
 
 <script>
 import { getLevelInfo } from '../../../service/utils'
-import vForm from './Form'
+import vForm from '../../../comm/Form'
 import vSmallTag from '../../../comm/SmallTag'
 
 export default {

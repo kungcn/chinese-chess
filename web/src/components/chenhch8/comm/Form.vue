@@ -20,7 +20,7 @@ export default {
   width: calc(100% - 2vw);
   border: 0;
   height: auto;
-  margin: 1vw auto 3vw auto;
+  margin: 2vh auto 4vh auto;
 }
 .grade-border {
   position: absolute;
