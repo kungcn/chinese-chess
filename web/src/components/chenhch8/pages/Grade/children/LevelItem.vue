@@ -37,7 +37,7 @@ export default {
   height: auto;
   padding-top: 2vh;
   display: flex;
-  padding: 2vh 7vw;
+  padding: 1vh 7vw;
 }
 .level-item > div {
   height: auto;

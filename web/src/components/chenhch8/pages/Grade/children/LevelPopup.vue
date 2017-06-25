@@ -96,23 +96,21 @@ export default {
   width: 100%;
   height: 100%;
   padding-top: 8.5vh;
-  display: flex;
-  flex-direction: column;
 }
 #level-popup > div {
   width: 85vw;
   margin: 0 auto;
 }
 #level-popup > div:nth-child(1) {
-  flex: 1;
+  height: 8vh;
   border-bottom: 1px solid #d4c3b1;
 }
 #level-popup > div:nth-child(2) {
-  flex: 2;
+  height: 20vh;
   border-bottom: 1px solid #d4c3b1;
 }
 #level-popup > div:nth-child(3) {
-  flex: 6;
+  height: 60vh;
 }
 #level-popup-title {
   position: relative;

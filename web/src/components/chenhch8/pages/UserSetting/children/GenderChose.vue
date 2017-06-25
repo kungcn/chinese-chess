@@ -120,14 +120,14 @@ export default {
   //justify-content: center;
 }
 .gender-chose-btn span > img {
-  height: 100%;
+  height: 5vh;
   display: inline-block
 }
 .gender-chose-btn span > span {
   position: absolute;
   top: 50%;
-  margin-left: 5vw;
-  transform: translate(0, -50%);
+  margin-left: 6vw;
+  transform: translate(0, -56%);
   font-size: 2rem;
 }
 .btn-active {

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="tool-toast">
   <mu-toast v-if="toast" :message="msg"/>
 </div>
 </template>
@@ -34,3 +34,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

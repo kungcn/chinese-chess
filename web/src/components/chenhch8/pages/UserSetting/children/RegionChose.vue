@@ -13,7 +13,7 @@
 
     <div id="region-chose-btn">
       <div @click="setRegion()">
-        <p>确定</p>
+        <p class="center">确定</p>
       </div>
     </div>
 
@@ -138,24 +138,26 @@ export default {
   width: 100%;
   height: 100%;
   padding: 5vh 9vw 0 9vw;
-  display: flex;
-  flex-direction: column;
+  /*display: flex;
+  flex-direction: column;*/
 }
-#region-picker-container{
+#region-picker-container {
   margin-top: 10%;
   width: 100%;
+  height: 30vh;
+  padding: 2vh 0;
 }
 #region-picker-container * {
   background-color: transparent;
 }
 #region-chose-btn {
   width: 100%;
-  flex: 1;
+  height: 10vh;
 }
 #region-chose-btn > div {
   position: relative;
   width: 90%;
-  height: 50%;
+  height: 60%;
   border-radius: 5px;
   background-color: #45a54e;
   left: 50%; top: 50%;
@@ -163,10 +165,6 @@ export default {
 }
 #region-chose-btn p {
   margin: 0;
-  text-align: center;
-  position: relative;
-  top: 50%;
   font-size: 2rem;
-  transform: translate(0, -50%);
 }
 </style>
