@@ -73,7 +73,7 @@ export default {
       else
         key = 'all';
       this.nums = [ this.data[key]['win'], this.data[key]['loss'], this.data[key]['tie'] ];
-      this.value2 = (this.data[key]['win'] / (this.data[key]['win'] + this.data[key]['loss'])).toFixed(2);
+      this.value2 = (this.data[key]['win'] / (this.data[key]['win'] + this.data[key]['loss'] + this.data[key]['tie'])).toFixed(2);
       this.value = this.value2 * 100;
     }
   }
