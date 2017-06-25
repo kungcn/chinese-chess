@@ -16,7 +16,7 @@
         :strokeWidth="18"
         :size="150" 
         :color="'#d1c8b7'"
-        value="100"/>
+        :value="100"/>
 
       <div id="grade-detail-circle-annotation">
         <p>胜率</p>
@@ -27,8 +27,8 @@
 
     <mu-circular-progress 
       mode="determinate"
-      strokeWidth="18"
-      size="150" 
+      :strokeWidth="18"
+      :size="150" 
       :color="'#c7594a'"
       :value="value"/>
   </div>
