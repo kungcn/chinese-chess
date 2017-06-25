@@ -20,6 +20,14 @@ export default {
         sum: 30,
         win: 23,
         loss: 7
+      },
+      gameDetail: {
+        grade: 150,
+        month: {
+          last: { win: 10, loss: 2, tie: 5 },
+          curr: { win: 15, loss: 9, tie: 2 },
+          all:  { win: 95, loss: 15, tie: 15 }
+        }
       }
     }
   },

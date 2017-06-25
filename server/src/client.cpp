@@ -11,6 +11,7 @@ Client::Client(struct sockaddr_in addr, int fd, int idx, Server* server) {
 	_server = server;
 	_opp_fd = -1;
 	_invitor_fd = -1;
+	_state = CREATE;
 }
 
 Client::~Client() {

@@ -59,6 +59,7 @@ export default {
     // TODO
     goBack() {
       console.log('返回主页');
+      this.$router.go(-1);
     },
     setBackBtn(status) {
       this.status.bck = status;
@@ -80,10 +81,10 @@ export default {
 #setting-header {
   position: relative;
   width: 100%;
-  height: 18vh;
+  height: 20vh;
 }
 #setting-header-user {
-  height: 18vh; width: 18vh;
+  height: 20vh; width: 18vh;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -102,8 +103,8 @@ export default {
 }
 #setting-header-user-portrait {
   position: absolute;
-  width: 55%; height: 55%;
-  left: 50%; top: 5%;
+  width: 10vh; height: 10vh;
+  left: 50%; top: 8%;
   border-radius: 100%;
   transform: translate(-50%, 0);
   background-color: #d0b399

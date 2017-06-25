@@ -1,4 +1,4 @@
-# Chinese Chess
+﻿# Chinese Chess
 ## Introduction
 A project called Yi-like(弈乎) to do Chinese chess game on Web, Android and PC both. In web part, we use Vue 2.0 and webpack to help us finish the job while in PC part we use OpenGL. Meanwhile, socket is necessary for us to play games with others at the same time.
 
@@ -11,15 +11,15 @@ A project called Yi-like(弈乎) to do Chinese chess game on Web, Android and PC
 ### Memebers
 sorted by the first name.
 
-Haicheng Chen(陈海城): working on Web.
+Haicheng Chen(陈海城): working on Web & frontend.
 
-Wenhan Chen(陈文汉): working on Android.
+Wenhan Chen(陈文汉): working on Web.
 
-Zilin Chen(陈梓麟): working on frontend.
+Zilin Chen(陈梓麟): working on backend.
 
 Junning Gong(龚俊宁): working on Web.
 
-Zekun Ye(叶泽坤): working on Android.
+Zekun Ye(叶泽坤): working on Web.
 
 Hao Zhang(张昊): working on PC.
 

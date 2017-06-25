@@ -30,7 +30,7 @@
 
 ```js
 {
-	recv_to_fd: number // number为发起邀请客户的fd
+	recv_from_fd: number // number为发起邀请客户的fd
 }
 ```
 3. 如果对手接受，则向服务端发送
@@ -38,7 +38,7 @@
 ```js
 {
 	accept:true, 
-	recv_to_fd: number // number为发起邀请者的fd
+	recv_from_fd: number // number为发起邀请者的fd
 }
 ```
 此后，邀请者和被邀请者会分别随机收到

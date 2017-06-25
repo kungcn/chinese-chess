@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       bgUrl: require('@/assets/pages/UserSetting/dialog_bg_1.png'),
-      currPortrait: { index: -1, img: null }
+      currPortrait: { index: -1, img: null },
+      timer: null
     }
   },
   created: function() {
@@ -71,7 +72,12 @@ export default {
     },
     makeSure() {
       this.$store.commit('setPortrait', this.currPortrait.index);
-      setTimeout(this.close, 100);
+      if (this.timer) clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.close();
+        this.$store.commit('setToastMessage', '修改成功');
+        this.$store.commit('setPopupStatus', { name: 'toast', value: true });
+      }, 100);
     }
   }
 }
