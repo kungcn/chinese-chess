@@ -8,16 +8,18 @@ export default {
     gender_popup_status: false,
     region_popup_status: false,
     dialog_popup_status: false,
-    toast_popup_status: false
+    toast_popup_status: false,
+    level_popup_status: false
   },
   mutations: {
     setPopupStatus(state, data) {
-      // console.log(value, name, state[name + '_popup_status']);
+      // console.log(data);
       if (!Array.isArray(data))
         data = [ data ]
       data.forEach(({ name, value }) => {
         state[name + '_popup_status'] = value;
       })
+      // console.log(state.level_popup_status)
     }
   },
   getters: {
@@ -35,11 +37,9 @@ export default {
     },
     getToastPopupStatus(state) {
       return state.toast_popup_status;
+    },
+    getLevelPopupStatus(state) {
+      return state.level_popup_status;
     }
-  },
-  /*actions: {
-    change(context, status) {
-      context.commit('setBottomPopup', status)
-    }
-  }*/
+  }
 }

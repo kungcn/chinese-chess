@@ -5,8 +5,8 @@ class="background-container">
   <v-header
     :usrAccount="user.name"
     :portraitIndex="user.portrait"></v-header>
-  <v-Content></v-Content>
-
+  <v-Content :user="user"></v-Content>
+  <v-level-popup></v-level-popup>
 </div>
 </template>
 
@@ -15,10 +15,11 @@ import { mapGetters } from 'vuex'
 
 import vHeader from '../../comm/Header'
 import vContent from './children/Content'
+import vLevelPopup from './children/LevelPopup'
 
 export default {
   components: {
-    vHeader, vContent
+    vHeader, vContent, vLevelPopup
   },
   computed: {
     ...mapGetters({
@@ -34,5 +35,8 @@ export default {
 </script>
 
 <style>
-
+.background-container {
+  background: no-repeat;
+  background-size: 100% 100%
+}
 </style>

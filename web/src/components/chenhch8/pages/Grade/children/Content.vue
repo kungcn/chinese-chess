@@ -2,14 +2,20 @@
 <div id="setting-content">
   <div id="setting-content-container">
 
+    <v-level :grade="user.gameDetail.grade"></v-level>
 
   </div>
 </div>
 </template>
 
 <script>
-export default {
+import vLevel from './Level'
 
+export default {
+  components: {
+    vLevel
+  },
+  props: [ 'user' ]
 }
 </script>
 
