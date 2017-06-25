@@ -137,7 +137,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 9% 9vw 0 9vw;
+  padding: 5vh 9vw 0 9vw;
   display: flex;
   flex-direction: column;
 }

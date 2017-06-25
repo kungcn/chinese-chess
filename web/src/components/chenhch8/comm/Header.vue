@@ -29,7 +29,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  props: [ 'usrAccount', 'portraitIndex' ],
+  props: [ 'usrAccount', 'portraitIndex', 'canClick' ],
   data() {
     return {
       img: {
@@ -62,15 +62,18 @@ export default {
       this.$router.go(-1);
     },
     setBackBtn(status) {
-      this.status.bck = status;
+      if (this.canClick)
+        this.status.bck = status;
     },
     setUsrBtn(status) {
-      this.status.usr = status;
+      if (this.canClick)
+        this.status.usr = status;
     },
     setCurrPortrait() {
       this.img.usr = this.portrait.items[this.portraitIndex];
     },
     showBottomPopup() {
+      if (this.canClick)
       this.$store.commit('setPopupStatus', { name: 'portrait', value: true });
     }
   }

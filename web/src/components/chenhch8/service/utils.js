@@ -29,21 +29,45 @@ export const getLevelInfo = (grade) => {
   if (!grade) return LEVEL;
   let result;
   if (grade >= 0 & grade < 200)
-    result = { name: '新手九级', color: '#656d81' }
+    result = { name: '新手九级', color: '#656d81', goal: {
+      grade: 200,
+      name: '八级棋士'
+    }}
   else if (grade >= 200 & grade < 500)
-    result = { name: '新手八级', color: '#656d81' }
+    result = { name: '新手八级', color: '#656d81', goal: {
+      grade: 500,
+      name: '七级棋士'
+    }}
   else if (grade >= 500 & grade < 800)
-    result = { name: '业余七级', color: '#538254' }
+    result = { name: '业余七级', color: '#538254', goal: {
+      grade: 800,
+      name: '六级棋士'
+    }}
   else if (grade >= 800 & grade < 1100)
-    result = { name: '业余六级', color: '#538254' }
+    result = { name: '业余六级', color: '#538254', goal: {
+      grade: 1100,
+      name: '五级棋士'
+    }}
   else if (grade >= 1100 & grade < 1400)
-    result = { name: '业余五级', color: '#538254' }
+    result = { name: '业余五级', color: '#538254', goal: {
+      grade: 1400,
+      name: '四级棋士'
+    }}
   else if (grade >= 1400 & grade < 1700)
-    result = { name: '业余四级', color: '#538254' }
+    result = { name: '业余四级', color: '#538254', goal: {
+      grade: 1700,
+      name: '三级棋士'
+    }}
   else if (grade >= 1700 & grade < 1900)
-    result = { name: '专业三级', color: '#b74546' }
+    result = { name: '专业三级', color: '#b74546', goal: {
+      grade: 1900,
+      name: '二级棋士'
+    }}
   else if (grade >= 1900 & grade < 2100)
-    result = { name: '专业二级', color: '#b74546' }
+    result = { name: '专业二级', color: '#b74546', goal: {
+      grade: 2100,
+      name: '一级棋士'
+    }}
   else if (grade >= 2100)
     result = { name: '专业一级', color: '#b74546' }
   return result

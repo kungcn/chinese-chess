@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import vForm from '../../../comm/Form'
+import vForm from './Form'
 
 export default {
   components: {

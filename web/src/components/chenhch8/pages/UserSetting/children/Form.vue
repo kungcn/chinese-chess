@@ -11,7 +11,7 @@
        @touchend="setActive(-1)"
        @click="callback(item.callback)">
     <p>{{ item.title }}</p>
-    <img src="../../../assets/pages/UserSetting/btn_r.png" />
+    <img src="../../../../../assets/pages/UserSetting/btn_r.png" />
     <span>{{ item.text }}</span>
   </div>
 </div>
