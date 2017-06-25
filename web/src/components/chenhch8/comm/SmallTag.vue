@@ -16,8 +16,10 @@ export default {
   width: 15vw;
   height: 5vw;
   line-height: 5vw;
-  border-radius: 6px;
+  border-radius: 9px;
   color: #e1d2bf;
   font-size: 3vw;
+  text-align: center;
+  display: inline-block;
 }
 </style>

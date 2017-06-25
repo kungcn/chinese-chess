@@ -3,6 +3,7 @@
      :style="{ backgroundImage: 'url(' + img + ')' }"
      class="background-container">
   <v-header
+    :canClick="true"
     :usrAccount="user.name"
     :portraitIndex="user.portrait"></v-header>
   <v-content :user="user"></v-content>
