@@ -25,7 +25,7 @@ export default {
         grade: 150,
         month: {
           last: { win: 10, loss: 2, tie: 5 },
-          curr: { win: 15, loss: 9, tie: 2 },
+          curr: { win: 15, loss: 9, tie: 9 },
           all:  { win: 95, loss: 15, tie: 15 }
         }
       }
