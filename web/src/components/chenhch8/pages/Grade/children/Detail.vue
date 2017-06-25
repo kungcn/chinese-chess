@@ -3,9 +3,10 @@
   <div id="grade-detail-btn-list">
     <div v-for="(btn, index) in btns"
          :key="index"
-         :class="{ 'grade-detail-btn-active': index == curr }"
          @click="setActive(index)">
-      <v-form :msg="btn"></v-form>
+      <v-form :msg="btn"
+              :active="index == curr"
+              :addClass="active_class"></v-form>
     </div>
   </div>
   <div id="grade-detail-circle">
@@ -56,7 +57,11 @@ export default {
       nums: [ 0, 0, 0 ],
       curr: 0,
       value: 0,
-      value2: 0
+      value2: 0,
+      active_class: {
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+        borderWidth: '5px'
+      }
     }
   },
   created: function() {
