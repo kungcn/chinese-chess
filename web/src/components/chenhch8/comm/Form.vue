@@ -1,16 +1,37 @@
 <template>
 <div class="grade-form">
-  <div class="grade-border border-horizontal"></div>
-  <div class="grade-border border-horizontal"></div>
-  <div class="grade-border border-vertical"></div>
-  <div class="grade-border border-vertical"></div>
-  <p>{{ msg }}</p>
+  <div class="grade-border border-horizontal" :style="othClass"></div>
+  <div class="grade-border border-horizontal" :style="othClass"></div>
+  <div class="grade-border border-vertical" :style="othClass"></div>
+  <div class="grade-border border-vertical" :style="othClass"></div>
+  <p :style="othClass">{{ msg }}</p>
 </div>
 </template>
 
 <script>
 export default {
-  props: [ 'msg' ]
+  props: [ 'msg', 'addClass', 'active' ],
+  data() {
+    return {
+      othClass: {}
+    }
+  },
+  created: function() {
+    this.setActive()
+  },
+  watch: {
+    active: function() {
+      this.setActive();
+    }
+  },
+  methods: {
+    setActive() {
+      if (this.active)
+        this.othClass = this.addClass
+      else
+        this.othClass = {}
+    }
+  }
 }
 </script>
 
