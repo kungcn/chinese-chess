@@ -3,16 +3,19 @@
         :style="{ backgroundImage: 'url(' + img.bg + ')' }"
         class="background-container">
         <user-header></user-header>
+        <chessboard></chessboard>
     </div>
 </template>
 
 <script>
     import { mapGetters } from 'vuex'
     import userHeader from '../components/userHeader'
+    import chessboard from '../components/chessboard'
 
     export default {
         components: {
-            'user-header': userHeader
+            'user-header': userHeader,
+            'chessboard': chessboard
         },
         computed: {
             ...mapGetters({
@@ -30,9 +33,6 @@
                     usr: false
                 }
             }
-        },
-        methods: {
-
         }
     }
 </script>

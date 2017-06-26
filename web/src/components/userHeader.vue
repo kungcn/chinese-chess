@@ -47,7 +47,6 @@
                 this.img.usr = this.portrait.items[this.portraitIndex];
             },
             iconClickHandler() {
-                console.log("已经点击跳转至设置页面");
                 this.$router.push({ name: 'UserSetting' });
             }
         },
