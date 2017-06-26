@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Chess from '@/components/kungcn/chess'
+import Chess from '@/views/chess'
 
 // using async to load components expect for the first showing one
 // import UserSetting from '@/components/chenhch8/pages/UserSetting/UserSetting'

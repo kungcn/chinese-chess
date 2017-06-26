@@ -58,7 +58,7 @@ export default {
   methods: {
     // TODO
     goBack() {
-      console.log('返回主页');
+      // console.log('返回主页');
       this.$router.go(-1);
     },
     setBackBtn(status) {
